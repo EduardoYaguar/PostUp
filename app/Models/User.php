@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,5 +49,25 @@ class User extends Authenticatable
 
     public function posts(){
         return $this->hasMany(Post::class);
+    }
+
+    //R
+    public function from(){
+
+        return $this->BelongsToMany(User::class, 'friends', 'from_id', 'to_id');
+    }
+    public function to(){
+
+        return $this->BelongsToMany(User::class, 'friends', 'to_id', 'from_id');
+    }
+
+    //Friends
+    public function friendsFrom(){
+
+        return $this->from()->wherePivot('accepted', true);
+    }
+    public function friendsTo(){
+
+        return $this->to()->wherePivot('accepted', true );
     }
 }

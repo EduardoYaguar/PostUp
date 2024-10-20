@@ -20,7 +20,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/profile/{user}', [PageController::class, 'profile'])->name('profile.show');
 
+    Route::put('/friends/{user}', [FriendController::class, 'update'])->name('friends.update');
     Route::post('/friends/{user}', [FriendController::class, 'store'])->name('friends.store');
+    Route::delete('/friends/{user}', [FriendController::class, 'destroy'])->name('friends.destroy');
+
+    Route::get('/status', [PageController::class, 'status'])->name('status');
 });
 
 require __DIR__.'/auth.php';

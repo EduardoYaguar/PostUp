@@ -1,10 +1,11 @@
 <nav x-data="{ open: false }" >
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-sm:mb-10">
         <div class="flex justify-end">
             <x-nav-link href="/">Home</x-nav-link>
+            <x-nav-link :href="route('status')" class="ml-5">Friends</x-nav-link>
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="ml-5  sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-slate-100  bg-slate-800 hover:text-slate-400 focus:outline-none transition ease-in-out duration-150">

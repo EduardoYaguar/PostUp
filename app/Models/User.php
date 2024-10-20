@@ -51,23 +51,30 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    //R
     public function from(){
 
-        return $this->BelongsToMany(User::class, 'friends', 'from_id', 'to_id');
+        return $this->belongsToMany(User::class, 'friends', 'from_id', 'to_id');
     }
     public function to(){
 
-        return $this->BelongsToMany(User::class, 'friends', 'to_id', 'from_id');
+        return $this->belongsToMany(User::class, 'friends', 'to_id', 'from_id');
     }
 
-    //Friends
     public function friendsFrom(){
 
         return $this->from()->wherePivot('accepted', true);
     }
     public function friendsTo(){
 
-        return $this->to()->wherePivot('accepted', true );
+        return $this->to()->wherePivot('accepted', true);
+    }
+
+    public function pendingFrom(){
+
+        return $this->from()->wherePivot('accepted', false);
+    }
+    public function pendingTo(){
+
+        return $this->to()->wherePivot('accepted', false);
     }
 }

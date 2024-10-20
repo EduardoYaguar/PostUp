@@ -27,4 +27,14 @@ class FriendController extends Controller
 
         return back();
     }
+
+    public function update(Request $request, User $user){
+        $request->user()->pendingTo()->updateExistingPivot($user, ['accepted' => true]);
+        return back();
+    }
+
+    public function destroy(Request $request, User $user){
+        $request->user()->pendingTo()->detach($user->id);
+        return redirect()->back()->with('success', 'Friend request cancelled successfully.');
+    }
 }
